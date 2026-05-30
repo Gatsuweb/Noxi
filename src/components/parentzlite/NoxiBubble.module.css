@@ -1,0 +1,27 @@
+.bubble {
+  display: grid;
+  grid-template-columns: 1fr 112px;
+  align-items: end;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 18px 16px 0;
+  background: linear-gradient(135deg, #eee2ff, #fff 70%);
+  box-shadow: 0 12px 24px rgba(26, 31, 79, 0.07);
+}
+
+.bubble h2 {
+  font-family: var(--font-baloo);
+  font-size: 1.25rem;
+  line-height: 1.05;
+}
+
+.bubble p {
+  margin-top: 4px;
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.bubble img {
+  display: block;
+  object-fit: contain;
+}

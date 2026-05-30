@@ -1,0 +1,44 @@
+.card {
+  display: grid;
+  min-height: 64px;
+  grid-template-columns: 36px 1fr 32px;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  padding: 12px;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 18px rgba(26, 31, 79, 0.07);
+}
+
+.completed {
+  border-color: rgba(139, 73, 255, 0.45);
+  background: #f7f1ff;
+}
+
+.locked {
+  color: #8d8aa6;
+}
+
+.order {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 12px;
+  background: #f3f1fb;
+  font-weight: 900;
+}
+
+.card strong {
+  font-family: var(--font-baloo);
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+.status {
+  color: #ffbd2f;
+  font-size: 1.35rem;
+  text-align: center;
+}

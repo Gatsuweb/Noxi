@@ -1,0 +1,21 @@
+.card {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  align-content: start;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.card img {
+  width: 88px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 12px rgba(26, 31, 79, 0.1));
+}
+
+.card strong {
+  font-family: var(--font-baloo);
+  font-size: 0.95rem;
+  line-height: 1.05;
+}

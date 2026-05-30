@@ -1,0 +1,12 @@
+.title {
+  margin-bottom: 18px;
+  font-family: var(--font-baloo);
+  font-size: 1.45rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 10px;
+}

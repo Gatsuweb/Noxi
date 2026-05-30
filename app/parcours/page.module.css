@@ -1,0 +1,11 @@
+.title {
+  margin-bottom: 18px;
+  font-family: var(--font-baloo);
+  font-size: 1.45rem;
+  text-align: center;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+}

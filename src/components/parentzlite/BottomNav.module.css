@@ -1,0 +1,57 @@
+.nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  display: grid;
+  max-width: 430px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin: 0 auto;
+  border-radius: 26px 26px 0 0;
+  padding: 12px 10px 16px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -10px 26px rgba(26, 31, 79, 0.12);
+}
+
+.item {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  color: #aaa7bd;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.item span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 12px;
+  line-height: 1;
+}
+
+.item svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.15;
+}
+
+.item strong {
+  font-size: 0.64rem;
+}
+
+.active {
+  color: var(--color-primary);
+}
+
+.active span {
+  color: #fff;
+  background: var(--color-primary);
+}

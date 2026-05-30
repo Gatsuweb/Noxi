@@ -1,0 +1,14 @@
+.app {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 24px 20px;
+  color: var(--color-text);
+  background: var(--color-bg);
+  box-shadow: 0 0 40px rgba(26, 31, 79, 0.08);
+}
+
+.withNav {
+  padding-bottom: 108px;
+}

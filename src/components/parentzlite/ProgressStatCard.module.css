@@ -1,0 +1,32 @@
+.card {
+  display: grid;
+  min-height: 112px;
+  align-content: center;
+  justify-items: center;
+  gap: 6px;
+  border: 1px solid #eceaf4;
+  border-radius: 20px;
+  padding: 14px 8px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 10px 20px rgba(26, 31, 79, 0.06);
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.card strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-baloo);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.card small {
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
