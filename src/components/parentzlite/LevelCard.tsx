@@ -26,7 +26,7 @@ export function LevelCard({ level, xp, maxXp, compact = false }: LevelCardProps)
         <XpBar value={xp} max={maxXp} />
         <strong>{xp} / {maxXp} XP</strong>
       </div>
-      <Image className={styles.noxi} src="/parentZlite/noxi-emotes/noxi-heureux.png" alt="" width={118} height={118} />
+      <Image className={styles.noxi} src="/parentZlite/rewards/emotions/emotion-heureux.png" alt="" width={118} height={118} />
     </motion.section>
   );
 }

@@ -45,7 +45,9 @@ export default function TanierePage() {
 
   const totalRewards = stickers.length + noxiSkins.length + noxiEmotions.length;
   const unlockedRewards =
-    progress.unlockedStickers.length + progress.unlockedSkins.length + progress.unlockedEmotions.length;
+    stickers.filter((item) => progress.unlockedStickers.includes(item.id)).length +
+    noxiSkins.filter((item) => progress.unlockedSkins.includes(item.id)).length +
+    noxiEmotions.filter((item) => progress.unlockedEmotions.includes(item.id)).length;
   const currentTab = tabContent[activeTab];
   const currentUnlocked = progress[currentTab.unlockedKey];
 

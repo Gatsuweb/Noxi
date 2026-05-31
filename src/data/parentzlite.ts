@@ -86,9 +86,16 @@ export type ParentProgress = {
 };
 
 export const rewardImages = {
-  sticker: "/parentZlite/rewards/stickers/Stickers-test.png",
-  skin: "/parentZlite/rewards/skins/Skin-test.png",
-  emotion: "/parentZlite/rewards/emotions/emotion-test.png",
+  stickerTest: "/parentZlite/rewards/stickers/Stickers-test.png",
+  stickerCalme: "/parentZlite/rewards/stickers/sticker%20calme.png",
+  stickerCoucher: "/parentZlite/rewards/stickers/sticker%20coucher.png",
+  skinClassique: "/parentZlite/rewards/skins/Skin-test.png",
+  skinLecteur: "/parentZlite/rewards/skins/skin%20lecteur.png",
+  skinExplorateur: "/parentZlite/rewards/skins/skin%20explorateur.png",
+  skinHero: "/parentZlite/rewards/skins/skin-hero.png",
+  emotionHeureux: "/parentZlite/rewards/emotions/emotion-heureux.png",
+  emotionCurieux: "/parentZlite/rewards/emotions/emotion-curieux.png",
+  emotionEncourageant: "/parentZlite/rewards/emotions/emotion-encourageant.png",
 };
 
 export const paths: ParentPath[] = [
@@ -509,22 +516,22 @@ export const stickers: RewardItem[] = [
     id: "petit-pas",
     name: "Petit pas du jour",
     cost: 5,
-    image: rewardImages.sticker,
+    image: rewardImages.stickerTest,
     description: "Un sticker pour célébrer les petites victoires.",
   },
   {
     id: "gardien-calme",
     name: "Gardien du calme",
     cost: 15,
-    image: rewardImages.sticker,
+    image: rewardImages.stickerCalme,
     description: "Pour les moments où tu gardes ton calme.",
   },
   {
-    id: "mission-accomplie",
-    name: "Mission accomplie",
+    id: "rituel-coucher",
+    name: "Rituel du coucher",
     cost: 25,
-    image: rewardImages.sticker,
-    description: "Pour les parents qui passent à l'action.",
+    image: rewardImages.stickerCoucher,
+    description: "Pour célébrer les routines qui deviennent plus douces.",
   },
 ];
 
@@ -533,22 +540,29 @@ export const noxiSkins: RewardItem[] = [
     id: "classique",
     name: "Noxi classique",
     cost: 0,
-    image: rewardImages.skin,
+    image: rewardImages.skinClassique,
     description: "Le compagnon d'apprentissage de départ.",
   },
   {
     id: "lecteur",
     name: "Noxi lecteur",
     cost: 30,
-    image: rewardImages.skin,
+    image: rewardImages.skinLecteur,
     description: "Pour les parents qui aiment comprendre.",
   },
   {
     id: "explorateur",
     name: "Noxi explorateur",
     cost: 45,
-    image: rewardImages.skin,
+    image: rewardImages.skinExplorateur,
     description: "Pour avancer dans les parcours.",
+  },
+  {
+    id: "hero",
+    name: "Noxi héros",
+    cost: 60,
+    image: rewardImages.skinHero,
+    description: "Pour les grandes séries de petits pas.",
   },
 ];
 
@@ -557,21 +571,21 @@ export const noxiEmotions: RewardItem[] = [
     id: "heureux",
     name: "Noxi heureux",
     cost: 0,
-    image: rewardImages.emotion,
+    image: rewardImages.emotionHeureux,
     description: "Débloqué dès le départ.",
   },
   {
-    id: "fier",
-    name: "Noxi fier",
+    id: "encourageant",
+    name: "Noxi encourageant",
     cost: 10,
-    image: rewardImages.emotion,
-    description: "Pour célébrer les progrès.",
+    image: rewardImages.emotionEncourageant,
+    description: "Pour garder un ton doux pendant les moments chargés.",
   },
   {
     id: "curieux",
     name: "Noxi curieux",
     cost: 15,
-    image: rewardImages.emotion,
+    image: rewardImages.emotionCurieux,
     description: "Pour apprendre sans jugement.",
   },
 ];
