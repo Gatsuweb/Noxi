@@ -20,12 +20,10 @@ function isStandalone() {
   return window.matchMedia("(display-mode: standalone)").matches || navigatorWithStandalone.standalone === true;
 }
 
-function isIosSafari() {
+function isIosDevice() {
   const userAgent = window.navigator.userAgent;
-  const isIos = /iphone|ipad|ipod/i.test(userAgent);
-  const isSafari = /safari/i.test(userAgent) && !/crios|fxios|edgios/i.test(userAgent);
 
-  return isIos && isSafari;
+  return /iphone|ipad|ipod/i.test(userAgent);
 }
 
 function canShowFromStorage() {
@@ -44,44 +42,38 @@ function snoozeModal() {
 }
 
 export function PwaInstallModal() {
-  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [iosSafari, setIosSafari] = useState(false);
+  const [iosDevice, setIosDevice] = useState(false);
 
-  const shouldUseManualInstructions = iosSafari || !deferredPrompt;
+  const shouldUseManualInstructions = iosDevice || !deferredPrompt;
 
   const openIfAllowed = useCallback((hasInstallPrompt: boolean) => {
     if (isStandalone() || !canShowFromStorage()) {
       return;
     }
 
-    if (hasInstallPrompt || isIosSafari()) {
+    if (hasInstallPrompt || isIosDevice()) {
       setVisible(true);
     }
   }, []);
 
   useEffect(() => {
-    setMounted(true);
-
-    if (isStandalone() || !canShowFromStorage()) {
-      return;
-    }
-
-    const detectedIosSafari = isIosSafari();
-    setIosSafari(detectedIosSafari);
-
-    if (detectedIosSafari) {
-      setVisible(true);
-      return;
-    }
-
     const timeout = window.setTimeout(() => {
-      openIfAllowed(false);
-    }, 1200);
+      if (isStandalone() || !canShowFromStorage()) {
+        return;
+      }
+
+      const detectedIosDevice = isIosDevice();
+      setIosDevice(detectedIosDevice);
+
+      if (detectedIosDevice) {
+        setVisible(true);
+      }
+    }, 0);
 
     return () => window.clearTimeout(timeout);
-  }, [openIfAllowed]);
+  }, []);
 
   useEffect(() => {
     function handleBeforeInstallPrompt(event: Event) {
@@ -108,14 +100,14 @@ export function PwaInstallModal() {
   }, [openIfAllowed]);
 
   const instructions = useMemo(() => {
-    if (!iosSafari) return null;
+    if (!iosDevice) return null;
 
     return [
       "Appuie sur le bouton Partager",
       "Choisis Sur l'écran d'accueil",
       "Valide avec Ajouter",
     ];
-  }, [iosSafari]);
+  }, [iosDevice]);
 
   async function handleInstall() {
     if (deferredPrompt) {
@@ -145,10 +137,6 @@ export function PwaInstallModal() {
   function handleDismissForever() {
     window.localStorage.setItem(DISMISSED_KEY, "true");
     setVisible(false);
-  }
-
-  if (!mounted) {
-    return null;
   }
 
   return (
@@ -195,7 +183,7 @@ export function PwaInstallModal() {
               </div>
             ) : null}
 
-            {!deferredPrompt && !iosSafari ? (
+            {!deferredPrompt && !iosDevice ? (
               <p className={styles.browserNote}>Tu peux aussi l&apos;ajouter depuis le menu de ton navigateur.</p>
             ) : null}
 
