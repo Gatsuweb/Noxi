@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { Viewport } from "next";
 import { Baloo_2, Nunito } from "next/font/google";
+import { PwaInstallModal } from "@/src/components/parentzlite/PwaInstallModal";
 import { PwaRegistration } from "@/src/components/parentzlite/PwaRegistration";
 import "./globals.css";
 
@@ -58,6 +59,7 @@ export default function RootLayout({
     <html lang="fr" className={`${baloo.variable} ${nunito.variable}`}>
       <body>
         <PwaRegistration />
+        <PwaInstallModal />
         {children}
       </body>
     </html>
