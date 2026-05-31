@@ -3,10 +3,13 @@ export type PathSlug = "emotions" | "sommeil" | "ecrans" | "autonomie" | "freres
 export type ParentPath = {
   slug: PathSlug;
   title: string;
+  name: string;
   shortTitle: string;
   image: string;
   color: string;
+  description: string;
   total: number;
+  totalSituations: number;
   completed: number;
 };
 
@@ -39,6 +42,34 @@ export type ReadingCard = {
   action: string;
 };
 
+export type DailyMission = {
+  id: string;
+  category: string;
+  title: string;
+  duration: string;
+  rewardXp: number;
+  rewardSeeds: number;
+  description: string;
+  noxiMessage: string;
+};
+
+export type PathChapterStatus = "completed" | "current" | "locked";
+
+export type PathChapter = {
+  id: string;
+  title: string;
+  description: string;
+  status: PathChapterStatus;
+};
+
+export type RewardItem = {
+  id: string;
+  name: string;
+  cost: number;
+  image: string;
+  description: string;
+};
+
 export type ParentProgress = {
   level: number;
   xp: number;
@@ -47,52 +78,78 @@ export type ParentProgress = {
   seeds: number;
   completedSituations: string[];
   badges: string[];
+  completedMissions: string[];
+  unlockedStickers: string[];
+  unlockedSkins: string[];
+  unlockedEmotions: string[];
+  equippedSkin: string;
+};
+
+export const rewardImages = {
+  sticker: "/parentZlite/rewards/stickers/Stickers-test.png",
+  skin: "/parentZlite/rewards/skins/Skin-test.png",
+  emotion: "/parentZlite/rewards/emotions/emotion-test.png",
 };
 
 export const paths: ParentPath[] = [
   {
     slug: "emotions",
-    title: "Les emotions",
-    shortTitle: "Emotions",
+    title: "Les émotions",
+    name: "Les émotions",
+    shortTitle: "Émotions",
     image: "/parentZlite/parcours/parcours-emotions.png",
-    color: "var(--color-pink)",
+    color: "pink",
+    description: "Comprendre et accompagner les émotions.",
     total: 10,
+    totalSituations: 10,
     completed: 3,
   },
   {
     slug: "sommeil",
     title: "Le sommeil",
+    name: "Le sommeil",
     shortTitle: "Sommeil",
     image: "/parentZlite/parcours/parcours-sommeil.png",
-    color: "var(--color-blue)",
+    color: "blue",
+    description: "Créer des routines plus douces.",
     total: 10,
+    totalSituations: 10,
     completed: 2,
   },
   {
     slug: "ecrans",
-    title: "Trop d'ecrans",
-    shortTitle: "Ecrans",
+    title: "Les écrans",
+    name: "Les écrans",
+    shortTitle: "Écrans",
     image: "/parentZlite/parcours/parcours-ecrans.png",
-    color: "var(--color-primary)",
+    color: "purple",
+    description: "Poser des limites sans conflit inutile.",
     total: 10,
+    totalSituations: 10,
     completed: 1,
   },
   {
     slug: "autonomie",
     title: "L'autonomie",
+    name: "L'autonomie",
     shortTitle: "Autonomie",
     image: "/parentZlite/parcours/parcours-autonomie.png",
-    color: "var(--color-yellow)",
+    color: "yellow",
+    description: "Aider l'enfant à faire seul progressivement.",
     total: 10,
+    totalSituations: 10,
     completed: 0,
   },
   {
     slug: "freres-soeurs",
-    title: "Freres et soeurs",
+    title: "Frères et sœurs",
+    name: "Frères et sœurs",
     shortTitle: "Fratrie",
     image: "/parentZlite/parcours/parcours-freres-soeurs.png",
-    color: "var(--color-green)",
+    color: "green",
+    description: "Apaiser les disputes et encourager la coopération.",
     total: 10,
+    totalSituations: 10,
     completed: 1,
   },
 ];
@@ -259,6 +316,266 @@ export const readingCards: ReadingCard[] = [
   },
 ];
 
+export const dailyMissions: DailyMission[] = [
+  {
+    id: "autonomie-tenue",
+    category: "Autonomie",
+    title: "Le choix des vêtements",
+    duration: "3 min",
+    rewardXp: 20,
+    rewardSeeds: 1,
+    description: "Propose à ton enfant de choisir entre deux tenues préparées à l'avance.",
+    noxiMessage: "Donner un petit choix aide l'enfant à se sentir acteur.",
+  },
+  {
+    id: "emotions-meteo",
+    category: "Émotions",
+    title: "La météo intérieure",
+    duration: "4 min",
+    rewardXp: 20,
+    rewardSeeds: 1,
+    description:
+      "Demande à ton enfant de choisir une météo pour dire comment il se sent : soleil, nuage, pluie ou orage.",
+    noxiMessage: "Mettre des mots simples sur les émotions aide l'enfant à mieux les comprendre.",
+  },
+  {
+    id: "sommeil-rituel",
+    category: "Sommeil",
+    title: "Le mini-rituel du soir",
+    duration: "5 min",
+    rewardXp: 20,
+    rewardSeeds: 1,
+    description: "Annonce les trois étapes du coucher avant de commencer : pyjama, histoire, câlin.",
+    noxiMessage: "Les routines donnent des repères et peuvent rendre le coucher plus prévisible.",
+  },
+  {
+    id: "ecrans-alternative",
+    category: "Écrans",
+    title: "L'alternative préparée",
+    duration: "3 min",
+    rewardXp: 20,
+    rewardSeeds: 1,
+    description:
+      "Avant de dire non à un écran, propose une alternative simple déjà prête : dessin, puzzle ou histoire.",
+    noxiMessage: "Une limite est souvent mieux acceptée quand une alternative concrète existe.",
+  },
+  {
+    id: "fratrie-tour-role",
+    category: "Frères et sœurs",
+    title: "Chacun son tour",
+    duration: "5 min",
+    rewardXp: 20,
+    rewardSeeds: 1,
+    description: "Propose un petit jeu où chacun a un rôle clair et change de rôle après deux minutes.",
+    noxiMessage: "Les rôles clairs réduisent parfois les tensions entre enfants.",
+  },
+];
+
+export const pathChapters: Record<PathSlug, PathChapter[]> = {
+  emotions: [
+    {
+      id: "emotions-accueillir",
+      title: "Accueillir l'émotion",
+      description: "Reconnaître ce que vit l'enfant avant d'agir.",
+      status: "completed",
+    },
+    {
+      id: "emotions-nommer",
+      title: "Mettre des mots",
+      description: "Utiliser des phrases simples pour clarifier le moment.",
+      status: "current",
+    },
+    {
+      id: "emotions-apaiser",
+      title: "Retrouver le calme",
+      description: "Proposer un repère corporel ou une pause courte.",
+      status: "locked",
+    },
+    {
+      id: "emotions-reparer",
+      title: "Réparer après la tempête",
+      description: "Revenir au lien quand chacun est plus disponible.",
+      status: "locked",
+    },
+  ],
+  sommeil: [
+    {
+      id: "sommeil-rituel",
+      title: "Préparer le rituel",
+      description: "Créer trois étapes faciles à répéter.",
+      status: "completed",
+    },
+    {
+      id: "sommeil-transition",
+      title: "Adoucir la transition",
+      description: "Aider l'enfant à passer de l'activité au repos.",
+      status: "current",
+    },
+    {
+      id: "sommeil-rappel",
+      title: "Répondre aux rappels",
+      description: "Garder un repère stable quand le coucher s'allonge.",
+      status: "locked",
+    },
+    {
+      id: "sommeil-autonomie",
+      title: "Encourager l'autonomie",
+      description: "Valoriser les petits progrès du soir.",
+      status: "locked",
+    },
+  ],
+  ecrans: [
+    {
+      id: "ecrans-base",
+      title: "Comprendre la demande",
+      description: "Identifier ce que l'enfant cherche vraiment.",
+      status: "completed",
+    },
+    {
+      id: "ecrans-limites",
+      title: "Poser une limite douce",
+      description: "Dire non sans entrer dans un bras de fer.",
+      status: "current",
+    },
+    {
+      id: "ecrans-alternatives",
+      title: "Proposer une alternative",
+      description: "Rediriger l'attention vers une activité possible.",
+      status: "locked",
+    },
+    {
+      id: "ecrans-routine",
+      title: "Créer une routine écran",
+      description: "Rendre les règles prévisibles.",
+      status: "locked",
+    },
+  ],
+  autonomie: [
+    {
+      id: "autonomie-choix",
+      title: "Offrir un petit choix",
+      description: "Donner deux options simples et acceptables.",
+      status: "completed",
+    },
+    {
+      id: "autonomie-essayer",
+      title: "Laisser essayer",
+      description: "Valoriser l'effort avant le résultat.",
+      status: "current",
+    },
+    {
+      id: "autonomie-routine",
+      title: "Rendre visible la routine",
+      description: "Aider l'enfant à savoir ce qui vient ensuite.",
+      status: "locked",
+    },
+    {
+      id: "autonomie-celebrer",
+      title: "Célébrer le progrès",
+      description: "Nommer ce qui devient plus facile.",
+      status: "locked",
+    },
+  ],
+  "freres-soeurs": [
+    {
+      id: "fratrie-ecouter",
+      title: "Écouter chacun",
+      description: "Donner une place aux deux points de vue.",
+      status: "completed",
+    },
+    {
+      id: "fratrie-roles",
+      title: "Clarifier les rôles",
+      description: "Réduire les tensions avec un cadre simple.",
+      status: "current",
+    },
+    {
+      id: "fratrie-tour",
+      title: "Organiser les tours",
+      description: "Rendre l'attente plus prévisible.",
+      status: "locked",
+    },
+    {
+      id: "fratrie-cooperation",
+      title: "Encourager la coopération",
+      description: "Créer une petite réussite commune.",
+      status: "locked",
+    },
+  ],
+};
+
+export const stickers: RewardItem[] = [
+  {
+    id: "petit-pas",
+    name: "Petit pas du jour",
+    cost: 5,
+    image: rewardImages.sticker,
+    description: "Un sticker pour célébrer les petites victoires.",
+  },
+  {
+    id: "gardien-calme",
+    name: "Gardien du calme",
+    cost: 15,
+    image: rewardImages.sticker,
+    description: "Pour les moments où tu gardes ton calme.",
+  },
+  {
+    id: "mission-accomplie",
+    name: "Mission accomplie",
+    cost: 25,
+    image: rewardImages.sticker,
+    description: "Pour les parents qui passent à l'action.",
+  },
+];
+
+export const noxiSkins: RewardItem[] = [
+  {
+    id: "classique",
+    name: "Noxi classique",
+    cost: 0,
+    image: rewardImages.skin,
+    description: "Le compagnon d'apprentissage de départ.",
+  },
+  {
+    id: "lecteur",
+    name: "Noxi lecteur",
+    cost: 30,
+    image: rewardImages.skin,
+    description: "Pour les parents qui aiment comprendre.",
+  },
+  {
+    id: "explorateur",
+    name: "Noxi explorateur",
+    cost: 45,
+    image: rewardImages.skin,
+    description: "Pour avancer dans les parcours.",
+  },
+];
+
+export const noxiEmotions: RewardItem[] = [
+  {
+    id: "heureux",
+    name: "Noxi heureux",
+    cost: 0,
+    image: rewardImages.emotion,
+    description: "Débloqué dès le départ.",
+  },
+  {
+    id: "fier",
+    name: "Noxi fier",
+    cost: 10,
+    image: rewardImages.emotion,
+    description: "Pour célébrer les progrès.",
+  },
+  {
+    id: "curieux",
+    name: "Noxi curieux",
+    cost: 15,
+    image: rewardImages.emotion,
+    description: "Pour apprendre sans jugement.",
+  },
+];
+
 export const initialProgress: ParentProgress = {
   level: 4,
   xp: 320,
@@ -267,6 +584,11 @@ export const initialProgress: ParentProgress = {
   seeds: 12,
   completedSituations: ["ecrans-1"],
   badges: ["gardien-du-calme", "expert-emotions", "super-parent"],
+  completedMissions: [],
+  unlockedStickers: ["petit-pas"],
+  unlockedSkins: ["classique"],
+  unlockedEmotions: ["heureux"],
+  equippedSkin: "classique",
 };
 
 export function getPath(slug: string) {

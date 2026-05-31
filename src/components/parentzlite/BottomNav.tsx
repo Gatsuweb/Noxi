@@ -5,14 +5,14 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import styles from "./BottomNav.module.css";
 
-type NavIcon = "home" | "path" | "book" | "spark" | "profile";
+type NavIcon = "home" | "path" | "mission" | "book" | "den";
 
 const items = [
   { href: "/home", label: "Accueil", icon: "home" },
   { href: "/parcours", label: "Parcours", icon: "path" },
+  { href: "/missions", label: "Missions", icon: "mission" },
   { href: "/lecture", label: "Comprendre", icon: "book" },
-  { href: "/situation/ecrans-1", label: "Defis", icon: "spark" },
-  { href: "/progression", label: "Profil", icon: "profile" },
+  { href: "/taniere", label: "Noxi", icon: "den" },
 ] satisfies Array<{ href: string; label: string; icon: NavIcon }>;
 
 const iconPaths: Record<NavIcon, ReactNode> = {
@@ -30,23 +30,26 @@ const iconPaths: Record<NavIcon, ReactNode> = {
       <path d="M7 5.5c4 0 4 4 0 4s-4 4 0 4h10c4 0 4 5 0 5" />
     </>
   ),
+  mission: (
+    <>
+      <path d="M8 5.5h8" />
+      <path d="M7 9.5h10" />
+      <path d="M7 13.5h6" />
+      <path d="M6 3.5h12a1.5 1.5 0 0 1 1.5 1.5v14A1.5 1.5 0 0 1 18 20.5H6A1.5 1.5 0 0 1 4.5 19V5A1.5 1.5 0 0 1 6 3.5Z" />
+      <path d="m14 17 1.5 1.5L19 15" />
+    </>
+  ),
   book: (
     <>
       <path d="M5 5.5h5a2 2 0 0 1 2 2v11a2 2 0 0 0-2-2H5z" />
       <path d="M19 5.5h-5a2 2 0 0 0-2 2v11a2 2 0 0 1 2-2h5z" />
     </>
   ),
-  spark: (
+  den: (
     <>
-      <path d="M12 4.5 13.8 9l4.7 1.8-4.7 1.8L12 17.5l-1.8-4.9-4.7-1.8L10.2 9z" />
-      <path d="M18 15.5v3" />
-      <path d="M16.5 17h3" />
-    </>
-  ),
-  profile: (
-    <>
-      <path d="M12 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" />
-      <path d="M5.5 19a6.5 6.5 0 0 1 13 0" />
+      <path d="M5 18.5v-6.2a7 7 0 0 1 14 0v6.2" />
+      <path d="M8.5 18.5v-5.2a3.5 3.5 0 0 1 7 0v5.2" />
+      <path d="M4 18.5h16" />
     </>
   ),
 };
@@ -68,7 +71,9 @@ export function BottomNav() {
         const active =
           pathname === item.href ||
           (item.href === "/parcours" && pathname.startsWith("/parcours")) ||
-          (item.href === "/lecture" && pathname.startsWith("/lecture"));
+          (item.href === "/missions" && pathname.startsWith("/missions")) ||
+          (item.href === "/lecture" && pathname.startsWith("/lecture")) ||
+          (item.href === "/taniere" && pathname.startsWith("/taniere"));
 
         return (
           <Link className={`${styles.item} ${active ? styles.active : ""}`} href={item.href} key={item.href}>

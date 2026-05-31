@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { AppShell } from "@/src/components/parentzlite/AppShell";
+import { ChapterPath } from "@/src/components/parentzlite/ChapterPath";
+import { NoxiBubble } from "@/src/components/parentzlite/NoxiBubble";
 import { SituationCard } from "@/src/components/parentzlite/SituationCard";
-import { getPath, situations } from "@/src/data/parentzlite";
+import { getPath, pathChapters, situations } from "@/src/data/parentzlite";
 import { useParentProgress } from "@/src/hooks/useParentProgress";
 import styles from "./page.module.css";
 
@@ -32,9 +34,20 @@ export default function PathDetailPage() {
     <AppShell>
       <header className={styles.header}>
         <Link href="/parcours" aria-label="Retour">‹</Link>
-        <h1>{path.title}</h1>
-        <Image src={path.image} alt="" width={56} height={56} />
+        <div>
+          <h1>{path.name}</h1>
+          <p>{path.description}</p>
+        </div>
+        <Image src={path.image} alt="" width={64} height={64} />
       </header>
+
+      <NoxiBubble message="Chaque chapitre t'aide à progresser doucement." mood="thinking" />
+
+      <ChapterPath chapters={pathChapters[path.slug]} firstSituationId={pathSituations[0]?.id} pathSlug={path.slug} />
+
+      <section className={styles.sectionHeader}>
+        <h2>Situations du parcours</h2>
+      </section>
       <section className={styles.list}>
         {pathSituations.map((situation) => (
           <SituationCard

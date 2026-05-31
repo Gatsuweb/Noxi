@@ -1,0 +1,24 @@
+.header {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.header span {
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 1000;
+}
+
+.header h1 {
+  font-family: var(--font-baloo);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.list {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { AppShell } from "@/src/components/parentzlite/AppShell";
 import { BottomNav } from "@/src/components/parentzlite/BottomNav";
 import { NoxiBubble } from "@/src/components/parentzlite/NoxiBubble";
@@ -32,7 +33,11 @@ export default function ProgressionPage() {
         <span>Graines</span>
         <strong>{progress.seeds}</strong>
       </section>
-      <NoxiBubble>Chaque petit pas compte. Tu progresses avec ton enfant.</NoxiBubble>
+      <Link className={styles.denLink} href="/taniere">
+        <span>Tanière</span>
+        <strong>Voir mes récompenses</strong>
+      </Link>
+      <NoxiBubble message="Regarde tout ce que tu as déjà construit." mood="proud" />
       <BottomNav />
     </AppShell>
   );

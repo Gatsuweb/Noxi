@@ -81,3 +81,26 @@
 .rewardsGrid > * + * {
   border-left: 1px solid #e8e3ee;
 }
+
+.soon {
+  display: grid;
+  gap: 5px;
+  margin: 0 0 18px;
+  border-radius: 24px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(26, 31, 79, 0.07);
+}
+
+.soon span {
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 1000;
+}
+
+.soon p {
+  color: var(--color-text);
+  font-family: var(--font-baloo);
+  font-size: 1.1rem;
+  line-height: 1.1;
+}

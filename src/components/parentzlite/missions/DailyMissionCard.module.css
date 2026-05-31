@@ -1,0 +1,22 @@
+.section {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 20px;
+}
+
+.heading {
+  display: grid;
+  gap: 2px;
+}
+
+.heading span {
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 1000;
+}
+
+.heading strong {
+  font-family: var(--font-baloo);
+  font-size: 1.3rem;
+  line-height: 1;
+}

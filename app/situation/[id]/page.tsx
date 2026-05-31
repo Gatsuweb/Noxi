@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import { AppShell } from "@/src/components/parentzlite/AppShell";
 import { ChoiceButton } from "@/src/components/parentzlite/ChoiceButton";
+import { NoxiBubble } from "@/src/components/parentzlite/NoxiBubble";
 import { PrimaryButton } from "@/src/components/parentzlite/PrimaryButton";
 import { XpBar } from "@/src/components/parentzlite/XpBar";
 import { getPath, getSituation } from "@/src/data/parentzlite";
@@ -51,6 +52,8 @@ export default function SituationPage() {
         <span className={styles.tag}>{path?.title}</span>
         <p>{situation.text}</p>
       </section>
+
+      <NoxiBubble message="Prends ton temps, observons ensemble." mood="thinking" />
 
       <section className={styles.choices}>
         <h1>Que faites-vous ?</h1>

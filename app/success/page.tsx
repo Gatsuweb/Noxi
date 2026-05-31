@@ -6,8 +6,10 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef } from "react";
 import { AppShell } from "@/src/components/parentzlite/AppShell";
 import { LevelCard } from "@/src/components/parentzlite/LevelCard";
+import { NoxiBubble } from "@/src/components/parentzlite/NoxiBubble";
 import { PrimaryButton } from "@/src/components/parentzlite/PrimaryButton";
 import { RewardCard } from "@/src/components/parentzlite/RewardCard";
+import { noxiSkins } from "@/src/data/parentzlite";
 import { useParentProgress } from "@/src/hooks/useParentProgress";
 import styles from "./page.module.css";
 
@@ -34,6 +36,9 @@ function SuccessContent() {
     completeSituation(situationId);
   }, [addSeed, addXp, completeSituation, incrementStreak, situationId]);
 
+  const nextSkin = noxiSkins.find((skin) => skin.id === "lecteur") ?? noxiSkins[1];
+  const remainingSeeds = Math.max(nextSkin.cost - progress.seeds, 0);
+
   return (
     <AppShell>
       <section className={styles.success}>
@@ -53,6 +58,7 @@ function SuccessContent() {
       </section>
 
       <LevelCard compact level={progress.level} xp={progress.xp} maxXp={progress.maxXp} />
+      <NoxiBubble message="Bravo, chaque petit pas compte." mood="proud" />
 
       <section className={styles.rewards}>
         <h2>Recompenses</h2>
@@ -61,6 +67,11 @@ function SuccessContent() {
           <RewardCard image="/parentZlite/collectibles/collectibles-graine-de-renard.png" label="+1 Graine" />
           <RewardCard image="/parentZlite/collectibles/collectibles-taniere.png" label="Streak +1" />
         </div>
+      </section>
+
+      <section className={styles.soon}>
+        <span>Bientôt débloqué</span>
+        <p>Encore {remainingSeeds} graines pour débloquer {nextSkin.name}.</p>
       </section>
 
       <PrimaryButton href="/home">Continuer</PrimaryButton>

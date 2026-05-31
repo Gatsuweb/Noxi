@@ -20,6 +20,30 @@ function normalizeProgress(progress: ParentProgress): ParentProgress {
   return next;
 }
 
+function unlockReward(
+  current: ParentProgress,
+  key: "unlockedStickers" | "unlockedSkins" | "unlockedEmotions",
+  id: string,
+  cost: number,
+): { progress: ParentProgress; unlocked: boolean } {
+  if (current[key].includes(id)) {
+    return { progress: current, unlocked: true };
+  }
+
+  if (current.seeds < cost) {
+    return { progress: current, unlocked: false };
+  }
+
+  return {
+    progress: {
+      ...current,
+      seeds: current.seeds - cost,
+      [key]: [...current[key], id],
+    },
+    unlocked: true,
+  };
+}
+
 function readProgress(): ParentProgress {
   if (typeof window === "undefined") {
     return initialProgress;
@@ -42,8 +66,12 @@ export function useParentProgress() {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    setProgress(readProgress());
-    setHydrated(true);
+    const timeout = window.setTimeout(() => {
+      setProgress(readProgress());
+      setHydrated(true);
+    }, 0);
+
+    return () => window.clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
@@ -75,17 +103,64 @@ export function useParentProgress() {
             : [...current.completedSituations, id],
         }));
       },
+      completeMission(id: string) {
+        updateProgress((current) => ({
+          ...current,
+          completedMissions: current.completedMissions.includes(id)
+            ? current.completedMissions
+            : [...current.completedMissions, id],
+        }));
+      },
+      isMissionCompleted(id: string) {
+        return progress.completedMissions.includes(id);
+      },
       unlockBadge(id: string) {
         updateProgress((current) => ({
           ...current,
           badges: current.badges.includes(id) ? current.badges : [...current.badges, id],
         }));
       },
+      unlockSticker(id: string, cost: number) {
+        const unlocked = progress.unlockedStickers.includes(id) || progress.seeds >= cost;
+
+        updateProgress((current) => {
+          const next = unlockReward(current, "unlockedStickers", id, cost);
+          return next.progress;
+        });
+
+        return unlocked;
+      },
+      unlockSkin(id: string, cost: number) {
+        const unlocked = progress.unlockedSkins.includes(id) || progress.seeds >= cost;
+
+        updateProgress((current) => {
+          const next = unlockReward(current, "unlockedSkins", id, cost);
+          return next.progress;
+        });
+
+        return unlocked;
+      },
+      unlockEmotion(id: string, cost: number) {
+        const unlocked = progress.unlockedEmotions.includes(id) || progress.seeds >= cost;
+
+        updateProgress((current) => {
+          const next = unlockReward(current, "unlockedEmotions", id, cost);
+          return next.progress;
+        });
+
+        return unlocked;
+      },
+      equipSkin(id: string) {
+        updateProgress((current) => ({
+          ...current,
+          equippedSkin: current.unlockedSkins.includes(id) ? id : current.equippedSkin,
+        }));
+      },
       resetProgress() {
         setProgress(initialProgress);
       },
     }),
-    [updateProgress],
+    [progress, updateProgress],
   );
 
   return { progress, hydrated, ...actions };

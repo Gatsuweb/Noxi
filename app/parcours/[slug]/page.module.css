@@ -1,6 +1,6 @@
 .header {
   display: grid;
-  grid-template-columns: 42px 1fr 56px;
+  grid-template-columns: 42px 1fr 64px;
   align-items: center;
   gap: 12px;
   margin-bottom: 18px;
@@ -14,12 +14,30 @@
 .header h1 {
   font-family: var(--font-baloo);
   font-size: 1.42rem;
-  text-align: center;
+  line-height: 1;
+}
+
+.header p {
+  margin-top: 4px;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
 .header img {
   border-radius: 18px;
   background: #fff;
+}
+
+.sectionHeader {
+  margin: 22px 0 12px;
+}
+
+.sectionHeader h2 {
+  font-family: var(--font-baloo);
+  font-size: 1.28rem;
+  line-height: 1;
 }
 
 .list {

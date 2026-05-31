@@ -1,5 +1,5 @@
 .card {
-  display: flex;
+  display: grid;
   color: var(--color-text);
   background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 10px 22px rgba(26, 31, 79, 0.08);
@@ -7,8 +7,7 @@
 
 .grid {
   min-height: 112px;
-  flex-direction: column;
-  align-items: center;
+  grid-template-rows: auto 1fr;
   justify-content: center;
   gap: 7px;
   border-radius: 18px;
@@ -16,12 +15,23 @@
   text-align: center;
 }
 
+.grid .imageWrap {
+  justify-self: center;
+}
+
+.grid .status,
+.grid .cta,
+.grid em {
+  display: none;
+}
+
 .row {
   min-height: 78px;
+  grid-template-columns: 72px 1fr 24px;
   align-items: center;
   gap: 14px;
-  border-radius: 20px;
-  padding: 12px;
+  border-radius: 24px;
+  padding: 14px;
 }
 
 .imageWrap {
@@ -32,6 +42,26 @@
   place-items: center;
   border-radius: 18px;
   background: var(--color-mint);
+}
+
+.pink {
+  background: #ffe4f1;
+}
+
+.blue {
+  background: #e0f3ff;
+}
+
+.purple {
+  background: #eee4ff;
+}
+
+.yellow {
+  background: #fff3c7;
+}
+
+.green {
+  background: #e5f8de;
 }
 
 .imageWrap img {
@@ -46,8 +76,26 @@
 
 .content strong {
   font-family: var(--font-baloo);
-  font-size: 0.98rem;
+  font-size: 1.08rem;
   line-height: 1.05;
+}
+
+.content em {
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.status {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 4px 8px;
+  color: var(--color-primary);
+  background: rgba(139, 73, 255, 0.1);
+  font-size: 0.66rem;
+  font-weight: 1000;
 }
 
 .progressLine {
@@ -83,4 +131,14 @@
   color: #9b96b7;
   font-size: 1.7rem;
   line-height: 1;
+}
+
+.cta {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: #fff;
+  background: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 1000;
 }

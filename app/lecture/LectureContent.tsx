@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { AppShell } from "@/src/components/parentzlite/AppShell";
 import { BottomNav } from "@/src/components/parentzlite/BottomNav";
+import { NoxiBubble } from "@/src/components/parentzlite/NoxiBubble";
 import { PrimaryButton } from "@/src/components/parentzlite/PrimaryButton";
 import { readingCards } from "@/src/data/parentzlite";
 import { useParentProgress } from "@/src/hooks/useParentProgress";
@@ -35,6 +36,8 @@ export function LectureContent() {
           <Image src="/parentZlite/noxi-emotes/noxi-curieux.png" alt="" width={96} height={96} priority />
         </motion.div>
       </header>
+
+      <NoxiBubble message="Quelques minutes pour mieux comprendre." mood="curious" />
 
       <section className={styles.cards} aria-label="Cartes de lecture">
         {readingCards.map((card, index) => {

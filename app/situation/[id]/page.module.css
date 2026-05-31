@@ -61,7 +61,7 @@
 .choices {
   display: grid;
   gap: 12px;
-  margin-bottom: 18px;
+  margin: 18px 0;
 }
 
 .choices h1 {

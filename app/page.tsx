@@ -31,7 +31,7 @@ export default function Home() {
 
         <PrimaryButton href="/home">Commencer</PrimaryButton>
         <Link className={styles.secondary} href="/home">
-          J'ai deja un compte
+          J&apos;ai deja un compte
         </Link>
       </section>
     </AppShell>
