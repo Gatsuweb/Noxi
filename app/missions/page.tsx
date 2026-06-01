@@ -9,7 +9,8 @@ import { useParentProgress } from "@/src/hooks/useParentProgress";
 import styles from "./page.module.css";
 
 export default function MissionsPage() {
-  const { addXp, addSeed, incrementStreak, completeMission, isMissionCompleted } = useParentProgress();
+  const { addXp, addSeed, addParentMoment, incrementStreak, completeMission, isMissionCompleted } =
+    useParentProgress();
 
   function handleCompleteMission(mission: DailyMission) {
     if (isMissionCompleted(mission.id)) {
@@ -20,6 +21,13 @@ export default function MissionsPage() {
     addSeed(mission.rewardSeeds);
     incrementStreak();
     completeMission(mission.id);
+    addParentMoment({
+      id: `mission-${mission.id}`,
+      title: mission.title,
+      category: mission.category,
+      date: "Aujourd'hui",
+      description: mission.description,
+    });
     return true;
   }
 

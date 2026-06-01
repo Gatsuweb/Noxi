@@ -16,9 +16,9 @@ export default function ProgressionPage() {
     <AppShell withNav>
       <h1 className={styles.title}>Ma progression</h1>
       <section className={styles.stats}>
-        <ProgressStatCard icon="◆" label="Niveau actuel" value={progress.level} suffix="Parent Explorateur" />
-        <ProgressStatCard icon="★" label="XP totaux" value={progress.xp} />
-        <ProgressStatCard icon="🔥" label="Serie actuelle" value={progress.streak} suffix="jours" />
+        <ProgressStatCard icon="N" label="Niveau actuel" value={progress.level} suffix="Parent Explorateur" />
+        <ProgressStatCard icon="XP" label="XP totaux" value={progress.xp} />
+        <ProgressStatCard icon="S" label="Serie actuelle" value={progress.streak} suffix="jours" />
       </section>
       <section className={styles.xpBlock}>
         <div>
@@ -30,14 +30,14 @@ export default function ProgressionPage() {
         <XpBar value={progress.xp} max={progress.maxXp} />
       </section>
       <section className={styles.seeds}>
-        <span>Graines</span>
+        <span>Graines pour contenus utiles</span>
         <strong>{progress.seeds}</strong>
       </section>
       <Link className={styles.denLink} href="/taniere">
-        <span>Tanière</span>
-        <strong>Voir mes récompenses</strong>
+        <span>Journal</span>
+        <strong>Voir mes progres concrets</strong>
       </Link>
-      <NoxiBubble message="Regarde tout ce que tu as déjà construit." mood="proud" />
+      <NoxiBubble message="Regarde tout ce que tu as deja construit." mood="proud" />
       <BottomNav />
     </AppShell>
   );

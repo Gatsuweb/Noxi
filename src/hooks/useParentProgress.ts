@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { initialProgress, type ParentProgress } from "@/src/data/parentzlite";
+import { initialProgress, type ParentMoment, type ParentProgress } from "@/src/data/parentzlite";
 
 const STORAGE_KEY = "parentzlite-progress";
 
@@ -114,11 +114,67 @@ export function useParentProgress() {
       isMissionCompleted(id: string) {
         return progress.completedMissions.includes(id);
       },
+      completeReading(id: string) {
+        updateProgress((current) => ({
+          ...current,
+          completedReadings: current.completedReadings.includes(id)
+            ? current.completedReadings
+            : [...current.completedReadings, id],
+        }));
+      },
+      isReadingCompleted(id: string) {
+        return progress.completedReadings.includes(id);
+      },
+      addParentMoment(moment: ParentMoment) {
+        updateProgress((current) => ({
+          ...current,
+          parentMoments: current.parentMoments.some((item) => item.id === moment.id)
+            ? current.parentMoments
+            : [moment, ...current.parentMoments],
+        }));
+      },
       unlockBadge(id: string) {
         updateProgress((current) => ({
           ...current,
           badges: current.badges.includes(id) ? current.badges : [...current.badges, id],
         }));
+      },
+      unlockSeedReward(id: string, cost: number) {
+        const unlocked = progress.unlockedSeedRewards.includes(id) || progress.seeds >= cost;
+
+        updateProgress((current) => {
+          if (current.unlockedSeedRewards.includes(id) || current.seeds < cost) {
+            return current;
+          }
+
+          return {
+            ...current,
+            seeds: current.seeds - cost,
+            unlockedSeedRewards: [...current.unlockedSeedRewards, id],
+          };
+        });
+
+        return unlocked;
+      },
+      buyStreakFreeze() {
+        const unlocked = progress.seeds >= 5;
+
+        updateProgress((current) => {
+          if (current.seeds < 5) {
+            return current;
+          }
+
+          return {
+            ...current,
+            seeds: current.seeds - 5,
+            streakFreezes: current.streakFreezes + 1,
+            unlockedSeedRewards: current.unlockedSeedRewards.includes("freeze-streak")
+              ? current.unlockedSeedRewards
+              : [...current.unlockedSeedRewards, "freeze-streak"],
+          };
+        });
+
+        return unlocked;
       },
       unlockSticker(id: string, cost: number) {
         const unlocked = progress.unlockedStickers.includes(id) || progress.seeds >= cost;

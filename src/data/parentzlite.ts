@@ -53,6 +53,34 @@ export type DailyMission = {
   noxiMessage: string;
 };
 
+export type ParentTitle = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export type ParentMoment = {
+  id: string;
+  title: string;
+  category: string;
+  date: string;
+  description: string;
+};
+
+export type ParentSkill = {
+  id: string;
+  name: string;
+  progress: number;
+};
+
+export type SeedReward = {
+  id: string;
+  name: string;
+  cost: number;
+  type: "streak" | "script" | "guide" | "challenge";
+  description: string;
+};
+
 export type PathChapterStatus = "completed" | "current" | "locked";
 
 export type PathChapter = {
@@ -79,6 +107,10 @@ export type ParentProgress = {
   completedSituations: string[];
   badges: string[];
   completedMissions: string[];
+  completedReadings: string[];
+  parentMoments: ParentMoment[];
+  unlockedSeedRewards: string[];
+  streakFreezes: number;
   unlockedStickers: string[];
   unlockedSkins: string[];
   unlockedEmotions: string[];
@@ -378,6 +410,100 @@ export const dailyMissions: DailyMission[] = [
   },
 ];
 
+export const parentTitles: ParentTitle[] = [
+  {
+    id: "gardien-calme-7",
+    title: "7 jours a garder le calme",
+    description: "Tu as maintenu une serie de 7 jours.",
+  },
+  {
+    id: "parent-curieux",
+    title: "Parent curieux",
+    description: "Tu as lu 5 contenus Comprendre.",
+  },
+  {
+    id: "parent-actif",
+    title: "Parent actif",
+    description: "Tu as realise 10 missions reelles.",
+  },
+  {
+    id: "guide-emotions",
+    title: "Guide des emotions",
+    description: "Tu as termine le parcours Emotions.",
+  },
+];
+
+export const parentMoments: ParentMoment[] = [
+  {
+    id: "mission-tenue",
+    title: "Choix des vetements",
+    category: "Autonomie",
+    date: "Aujourd'hui",
+    description: "Tu as propose deux choix simples a ton enfant.",
+  },
+  {
+    id: "lecture-routines",
+    title: "Comprendre les routines",
+    category: "Sommeil",
+    date: "Hier",
+    description: "Tu as pris 2 minutes pour mieux comprendre l'importance des reperes.",
+  },
+];
+
+export const parentSkills: ParentSkill[] = [
+  {
+    id: "calme",
+    name: "Calme",
+    progress: 65,
+  },
+  {
+    id: "ecoute",
+    name: "Ecoute",
+    progress: 45,
+  },
+  {
+    id: "cadre",
+    name: "Cadre",
+    progress: 55,
+  },
+  {
+    id: "autonomie",
+    name: "Autonomie",
+    progress: 35,
+  },
+];
+
+export const seedRewards: SeedReward[] = [
+  {
+    id: "freeze-streak",
+    name: "Protection de serie",
+    cost: 5,
+    type: "streak",
+    description: "Conserve ta serie lors d'une journee chargee.",
+  },
+  {
+    id: "script-supermarche",
+    name: "Script : crise au supermarche",
+    cost: 10,
+    type: "script",
+    description: "Une fiche concrete avec des phrases pretes a utiliser.",
+  },
+  {
+    id: "fiche-colere",
+    name: "Fiche : accompagner une colere",
+    cost: 15,
+    type: "guide",
+    description: "Un resume pratique pour comprendre et agir.",
+  },
+  {
+    id: "defi-autonomie",
+    name: "Defi avance : autonomie",
+    cost: 20,
+    type: "challenge",
+    description: "Une mission plus complete a tester dans la vraie vie.",
+  },
+];
+
 export const pathChapters: Record<PathSlug, PathChapter[]> = {
   emotions: [
     {
@@ -599,6 +725,10 @@ export const initialProgress: ParentProgress = {
   completedSituations: ["ecrans-1"],
   badges: ["gardien-du-calme", "expert-emotions", "super-parent"],
   completedMissions: [],
+  completedReadings: [],
+  parentMoments,
+  unlockedSeedRewards: [],
+  streakFreezes: 0,
   unlockedStickers: ["petit-pas"],
   unlockedSkins: ["classique"],
   unlockedEmotions: ["heureux"],

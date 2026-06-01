@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useState } from "react";
 import { AppShell } from "@/src/components/parentzlite/AppShell";
 import { BottomNav } from "@/src/components/parentzlite/BottomNav";
 import { NoxiBubble } from "@/src/components/parentzlite/NoxiBubble";
@@ -12,16 +11,26 @@ import { useParentProgress } from "@/src/hooks/useParentProgress";
 import styles from "./page.module.css";
 
 export function LectureContent() {
-  const { addXp } = useParentProgress();
-  const [understoodCards, setUnderstoodCards] = useState<string[]>([]);
+  const { addXp, addParentMoment, completeReading, isReadingCompleted } = useParentProgress();
 
   function handleUnderstand(cardId: string) {
-    if (understoodCards.includes(cardId)) {
+    if (isReadingCompleted(cardId)) {
       return;
     }
 
+    const card = readingCards.find((item) => item.id === cardId);
     addXp(5);
-    setUnderstoodCards((current) => [...current, cardId]);
+    completeReading(cardId);
+
+    if (card) {
+      addParentMoment({
+        id: `reading-${card.id}`,
+        title: card.title,
+        category: card.category,
+        date: "Aujourd'hui",
+        description: `Tu as pris ${card.readingTime} pour explorer une idee utile.`,
+      });
+    }
   }
 
   return (
@@ -32,16 +41,16 @@ export function LectureContent() {
           <h1>Petites lectures pour avancer</h1>
           <p>Noxi t&apos;accompagne avec des idees courtes a tester dans la vraie vie.</p>
         </div>
-        <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
-          <Image src="/parentZlite/noxi-emotes/noxi-curieux.png" alt="" width={96} height={96} priority />
+        <motion.div >
+          <Image src="/parentZlite/rewards/emotions/emotion-curieux.png" alt="" width={96} height={96} priority />
         </motion.div>
       </header>
 
-      <NoxiBubble message="Quelques minutes pour mieux comprendre." mood="curious" />
+      {/* <NoxiBubble message="Quelques minutes pour mieux comprendre." mood="curious" /> */}
 
       <section className={styles.cards} aria-label="Cartes de lecture">
         {readingCards.map((card, index) => {
-          const understood = understoodCards.includes(card.id);
+          const understood = isReadingCompleted(card.id);
 
           return (
             <motion.article

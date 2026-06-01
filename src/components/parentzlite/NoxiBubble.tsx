@@ -12,10 +12,10 @@ type NoxiBubbleProps = {
 };
 
 const moodImages = {
-  happy: "/parentZlite/noxi-emotes/noxi-heureux.png",
-  thinking: "/parentZlite/noxi-emotes/noxi-réfléchit.png",
-  proud: "/parentZlite/noxi-emotes/noxi-fier.png",
-  curious: "/parentZlite/noxi-emotes/noxi-curieux.png",
+  happy: "/parentZlite/rewards/emotions/emotion-encourageant.png",
+  thinking: "/parentZlite/rewards/emotions/emotion-test.png",
+  proud: "/parentZlite/rewards/emotions/emotion-heureux.png",
+  curious: "/parentZlite/rewards/emotions/emotion-test.png",
 };
 
 export function NoxiBubble({

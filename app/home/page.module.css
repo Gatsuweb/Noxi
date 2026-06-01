@@ -38,25 +38,44 @@
   font-size: 0.68rem;
 }
 
-.denCard {
+.readingCard,
+.progressCard,
+.pathPreview {
   display: grid;
-  grid-template-columns: 1fr 76px;
   gap: 12px;
   align-items: center;
   margin-top: 16px;
   border-radius: 24px;
   padding: 16px;
-  background: linear-gradient(135deg, #fff, #ecfbf1);
   box-shadow: 0 12px 22px rgba(26, 31, 79, 0.08);
 }
 
-.denCard span {
+.readingCard {
+  grid-template-columns: 1fr 74px;
+  background: linear-gradient(135deg, #fff, #edf9ff);
+}
+
+.progressCard {
+  grid-template-columns: 1fr auto;
+  background: linear-gradient(135deg, #fff, #f4efff);
+}
+
+.pathPreview {
+  grid-template-columns: 70px 1fr;
+  background: var(--color-pink);
+}
+
+.readingCard span,
+.progressCard span,
+.pathPreview span {
   color: var(--color-primary);
   font-size: 0.76rem;
   font-weight: 1000;
 }
 
-.denCard strong {
+.readingCard strong,
+.progressCard strong,
+.pathPreview strong {
   display: block;
   margin-top: 2px;
   font-family: var(--font-baloo);
@@ -64,17 +83,30 @@
   line-height: 1;
 }
 
-.denCard p {
+.readingCard p,
+.progressCard p,
+.pathPreview p {
   margin-top: 5px;
   color: var(--color-text-muted);
   font-size: 0.82rem;
   font-weight: 800;
 }
 
-.denCard img {
-  width: 76px;
-  height: 76px;
+.readingCard img,
+.pathPreview img {
+  width: 100%;
+  height: auto;
   object-fit: contain;
+}
+
+.seedPill {
+  border-radius: 999px;
+  padding: 9px 11px;
+  color: #fff;
+  background: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 1000;
+  white-space: nowrap;
 }
 
 .sectionHeader {
@@ -106,7 +138,7 @@
   margin-top: 20px;
   border-radius: 24px;
   padding: 18px;
-  background: linear-gradient(135deg, #f0e8ff, #ffffff 70%);
+  background: linear-gradient(135deg, #fff7d8 100%);
   box-shadow: 0 12px 22px rgba(26, 31, 79, 0.08);
 }
 

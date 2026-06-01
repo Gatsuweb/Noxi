@@ -11,7 +11,7 @@
 
 .featured {
   border: 2px solid rgba(139, 73, 255, 0.14);
-  background: linear-gradient(135deg, #fff 0%, #f4eeff 60%, #fff7d8 100%);
+  background: linear-gradient(135deg, #f4eeff 60% );
 }
 
 .completed {

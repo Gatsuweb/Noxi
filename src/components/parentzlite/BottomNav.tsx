@@ -5,14 +5,14 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import styles from "./BottomNav.module.css";
 
-type NavIcon = "home" | "path" | "mission" | "book" | "den";
+type NavIcon = "home" | "mission" | "path" | "book" | "journal";
 
 const items = [
   { href: "/home", label: "Accueil", icon: "home" },
-  { href: "/parcours", label: "Parcours", icon: "path" },
   { href: "/missions", label: "Missions", icon: "mission" },
+  { href: "/parcours", label: "Parcours", icon: "path" },
   { href: "/lecture", label: "Comprendre", icon: "book" },
-  { href: "/taniere", label: "Noxi", icon: "den" },
+  { href: "/taniere", label: "Journal", icon: "journal" },
 ] satisfies Array<{ href: string; label: string; icon: NavIcon }>;
 
 const iconPaths: Record<NavIcon, ReactNode> = {
@@ -45,11 +45,11 @@ const iconPaths: Record<NavIcon, ReactNode> = {
       <path d="M19 5.5h-5a2 2 0 0 0-2 2v11a2 2 0 0 1 2-2h5z" />
     </>
   ),
-  den: (
+  journal: (
     <>
-      <path d="M5 18.5v-6.2a7 7 0 0 1 14 0v6.2" />
-      <path d="M8.5 18.5v-5.2a3.5 3.5 0 0 1 7 0v5.2" />
-      <path d="M4 18.5h16" />
+      <path d="M6.5 4.5h9a2 2 0 0 1 2 2v13l-3-1.5-3 1.5-3-1.5-3 1.5v-13a2 2 0 0 1 2-2Z" />
+      <path d="M9 8.5h6" />
+      <path d="M9 12h5" />
     </>
   ),
 };

@@ -76,7 +76,7 @@ export default function SituationPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
           >
-            <Image src="/parentZlite/noxi-emotes/noxi-fier.png" alt="" width={64} height={64} />
+            <Image src="/parentZlite/rewards/emotions/emotion-encourageant.png" alt="" width={64} height={64} />
             <div>
               <strong>Cette reaction est comprehensible.</strong>
               <p>Cette approche peut aider a garder un repere clair. Chaque petit pas compte.</p>
