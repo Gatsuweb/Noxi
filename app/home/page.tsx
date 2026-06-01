@@ -50,7 +50,7 @@ export default function HomePage() {
       </header>
 
       <LevelCard level={progress.level} xp={progress.xp} maxXp={progress.maxXp} />
-      <NoxiBubble message="Prêt(e) pour un petit pas aujourd'hui ?" mood="happy" />
+      {/* <NoxiBubble message="Prêt(e) pour un petit pas aujourd'hui ?" mood="happy" /> */}
 
       <DailyMissionCard
         completed={isMissionCompleted(dailyMission.id)}
